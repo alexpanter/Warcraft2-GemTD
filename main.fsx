@@ -32,10 +32,20 @@ let gemsOwned() =
 
 let gemsNeededToCreateSpecial() =
     printfn "Gems missing:"
-    for special in potentialSpecialGems do
+    for special in allSpecialGems do
+        let mutable missing = []
         for gem in special.GetList() do
             if not(gems.ContainsKey(gem)) || (gems.ContainsKey(gem) && gems.[gem] = 0) then
-                printfn "%18s (%s)" <|| (gem.name, special.GetName())
+                missing <- missing @ [gem.name]
+
+        printf "%-20s" (special.GetName())
+        match missing with
+            | []            -> printfn "(READY)"
+            | [n1]          -> printfn "(%s)" n1
+            | [n1;n2]       -> printfn "(%s, %s)" n1 n2
+            | [n1;n2;n3]    -> printfn "(%s, %s, %s)" n1 n2 n3
+            | [n1;n2;n3;n4] -> printfn "(%s, %s, %s, %s)" n1 n2 n3 n4
+            | _             -> printfn "ERROR, unkown match case!"
 
 let addSpecialGem = function
     | (s: SpecialGem) ->
@@ -60,7 +70,7 @@ let rec main() =
         | 1 ->
             printfn "GemQuality: 1=Chipped, 2=Flawed, 3=, 4=Flawless, 5=Perfect"
             printf "GemType: 1=Amethyst, 2=Diamond, 3=Opal, "
-            printfn "4=Emerald, 5=Topaz, 6=Ruby, 7=Sapphire"
+            printfn "4=Emerald, 5=Topaz, 6=Ruby, 7=Sapphire, 8=Aquamarine"
             let (gemQuality, gemType) = (ref 0, ref 0)
             let mutable (readQualityInput, readTypeInput) = (true, true)
             while readQualityInput do

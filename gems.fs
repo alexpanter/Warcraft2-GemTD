@@ -8,6 +8,7 @@ type GemType =
     | Topaz
     | Ruby
     | Sapphire
+    | Aquamarine
 
 type Quality =
     | Chipped
@@ -17,13 +18,14 @@ type Quality =
     | Perfect
 
 let getGemTypeString = function
-    | Amethyst -> "Amethyst"
-    | Diamond  -> "Diamond"
-    | Opal     -> "Opal"
-    | Emerald  -> "Emerald"
-    | Topaz    -> "Topaz"
-    | Ruby     -> "Ruby"
-    | Sapphire -> "Sapphire"
+    | Amethyst   -> "Amethyst"
+    | Diamond    -> "Diamond"
+    | Opal       -> "Opal"
+    | Emerald    -> "Emerald"
+    | Topaz      -> "Topaz"
+    | Ruby       -> "Ruby"
+    | Sapphire   -> "Sapphire"
+    | Aquamarine -> "Aquamarine"
 
 let getGemQualityString = function
     | Chipped  -> "Chipped"
@@ -40,6 +42,7 @@ let getGemTypeFromNumber = function
     | 5 -> Some(Topaz)
     | 6 -> Some(Ruby)
     | 7 -> Some(Sapphire)
+    | 8 -> Some(Aquamarine)
     | _ -> None
 
 let getGemQualityFromNumber = function
@@ -109,12 +112,28 @@ let regularSapphire  = createGem(Regular,  Sapphire, "Sapphire")
 let flawlessSapphire = createGem(Flawless, Sapphire, "Flawless Sapphire")
 let perfectSapphire  = createGem(Perfect,  Sapphire, "Perfect Sapphire")
 
+let chippedAquamarine  = createGem(Chipped,  Aquamarine, "Chipped Aquamarinee")
+let flawedAquamarine   = createGem(Flawed,   Aquamarine, "Flawed Aquamarine")
+let regularAquamarine  = createGem(Regular,  Aquamarine, "Aquamarine")
+let flawlessAquamarine = createGem(Flawless, Aquamarine, "Flawless Aquamarine")
+let perfectAquamarine  = createGem(Perfect,  Aquamarine, "Perfect Aquamarine")
+
 
 // e.g. ...
-let starSapphire = Special3(chippedAmethyst, regularDiamond, perfectOpal, "Star Sapphire")
-let uranium = Special3(chippedAmethyst, regularDiamond, perfectOpal, "Uranium238")
+let silver = Special3(chippedSapphire, chippedDiamond, chippedTopaz, "Silver")
+let malachite = Special3(chippedOpal, chippedEmerald, chippedAquamarine, "Malachite")
+let starRuby = Special3(chippedAmethyst, chippedRuby, flawedRuby, "Star Ruby")
+let jade = Special3(regularEmerald, regularOpal, flawedSapphire, "Jade")
+let redCrystal = Special3(flawlessEmerald, regularRuby, flawedAmethyst, "Red Crystal")
+let darkEmerald = Special3(perfectEmerald, flawlessSapphire, flawedTopaz, "Dark Emerald")
+let yellowSapphire = Special3(perfectSapphire, flawlessTopaz, flawlessRuby, "Yellow Sapphire")
+let bloodStone = Special3(perfectRuby, flawlessAquamarine, regularAmethyst, "Blood Stone")
+let uranium238 = Special3(perfectTopaz, flawedOpal, regularSapphire, "Uranium 238")
+let gold = Special3(perfectAmethyst, flawlessAmethyst, flawedDiamond, "Gold")
+let pinkDiamond = Special3(perfectDiamond, regularTopaz, regularDiamond, "Pink Diamond")
+let blackOpal = Special3(perfectOpal, flawlessDiamond, regularAquamarine, "Black Opal")
+let paraibaTourmaline = Special4(perfectAquamarine, flawlessOpal, flawedEmerald, flawedAquamarine, "Paraiba Tourmaline")
 
 let getAllSpecialGems() =
-    [ starSapphire;
-      uranium;
-    ]
+    [ silver; malachite; starRuby; jade; redCrystal; darkEmerald; yellowSapphire;
+      bloodStone; uranium238; gold; pinkDiamond; blackOpal; paraibaTourmaline ]
