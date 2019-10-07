@@ -1,4 +1,4 @@
-# Warcraft2-GemTD
+# Warcraft3-GemTD
 
 A program cheat sheet to manage gems needed to create special gems.
 Run as a terminal app next to your favorite Warcraft 3 map to get help
